@@ -36,7 +36,7 @@ from ..utils.image import preprocess_image
 
 def main():
     # User inputs
-    DATA_NAME = "dev-data_mini"
+    DATA_NAME = "dev-data_mini-small-imgs"
     BATCH_SIZE = 1
 
     # create bare minimum args object as needed for the fizyr implementation
@@ -44,8 +44,8 @@ def main():
         def __init__(self):
             self.batch_size = BATCH_SIZE
             self.config = None
-            self.image_min_side = 2560
-            self.image_max_side = 2560
+            self.image_min_side = 256
+            self.image_max_side = 290
             self.no_resize = True
             self.preprocess_image = preprocess_image
             self.group_method = None
@@ -86,10 +86,10 @@ def main():
         reg_targets = item[1][0][0,:,:]
 
         true_reg_targets = reg_targets[np.where(reg_targets == 1)[0]]
-        [print(np.round(c, 2)) for c in true_reg_targets]
-        print(true_reg_targets.shape)
+        #[print(np.round(c, 2)) for c in true_reg_targets]
+        #print(true_reg_targets.shape)
 
-        break
+        #break
 
 if __name__ == '__main__':
     u_debug.initialise_logging("INFO")
