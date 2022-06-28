@@ -37,8 +37,10 @@ from ..utils.image import preprocess_image
 
 def main():
     # User inputs
+    #DATA_NAME = "dev-data_full"
     #DATA_NAME = "dev-data_mini"
-    DATA_NAME = "dev-data_mini-small-img"
+    #DATA_NAME = "dev-data_mini-small-img"
+    DATA_NAME = "dev-data_mini-small-imgs"
     
     BATCH_SIZE = 1
 
@@ -85,31 +87,12 @@ def main():
     args = Args()
     train_generator = create_generators(args)
 
+    # process checksums
     u_tf.process_retinanet_target_checksums(
         train_generator,
         cls_target_first=False
     )
 
-    """
-    for item in train_generator:
-        print("\nin itterator")
-        reg_targets = item[1][0][0,:,:]
-        
-
-        true_reg_targets = np.round(reg_targets[np.where(reg_targets == 1)[0]], 5)
-
-        check_sum = np.sum(np.abs(true_reg_targets))
-
-        print(reg_targets.shape)
-        print(true_reg_targets.shape)
-        print(true_reg_targets)
-        print(check_sum)
-
-        #[print(np.round(c, 2)) for c in true_reg_targets]
-        #print(true_reg_targets.shape)
-        print("out itterator\n\n")
-        #break
-    """
 
 if __name__ == '__main__':
     u_debug.initialise_logging("INFO")

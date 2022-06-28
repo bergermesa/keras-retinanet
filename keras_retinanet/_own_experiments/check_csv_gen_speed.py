@@ -15,6 +15,7 @@ from tqdm import tqdm
 
 # own packages
 import tools.debug as u_debug
+import tools.utils_tensorflow as u_tf
 
 # Allow relative imports when being executed as script.
 if __name__ == "__main__" and __package__ is None:
@@ -36,6 +37,7 @@ from ..utils.image import preprocess_image
 
 def main():
     # User inputs
+    #DATA_NAME = "dev-data_full"
     DATA_NAME = "dev-data_mini"
     BATCH_SIZE = 1
 
@@ -84,14 +86,7 @@ def main():
 
     # evaluate the time the generator needs to process all images of the
     # user-given database
-    logging.info(
-        "one step in the progress bar correlates with on batch processed"
-    )
-    s_t = time.time()
-    for item in tqdm(train_generator):
-        pass
-    f_t = time.time()
-    logging.info(f"Iterating over the database took {f_t-s_t:.1f} s")
+    u_tf.benchmark_tf_generator_speed(train_generator)
 
 if __name__ == '__main__':
     u_debug.initialise_logging("INFO")
