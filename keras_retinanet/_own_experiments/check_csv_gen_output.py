@@ -36,7 +36,8 @@ from ..utils.image import preprocess_image
 
 def main():
     # User inputs
-    DATA_NAME = "dev-data_mini"
+    #DATA_NAME = "dev-data_mini"
+    DATA_NAME = "dev-data_mini-small-img"
     BATCH_SIZE = 1
 
     # create bare minimum args object as needed for the fizyr implementation
