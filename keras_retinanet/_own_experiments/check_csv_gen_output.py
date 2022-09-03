@@ -36,8 +36,8 @@ from ..utils.image import preprocess_image
 
 def main():
     # User inputs
-    #DATA_NAME = "dev-data_mini"
-    DATA_NAME = "dev-data_mini-small-img"
+    DATA_NAME = "dev-data_mini"
+    #DATA_NAME = "dev-data_mini-small-img"
     BATCH_SIZE = 1
 
     # create bare minimum args object as needed for the fizyr implementation
@@ -50,11 +50,21 @@ def main():
             self.no_resize = True
             self.preprocess_image = preprocess_image
             self.group_method = None
-            base_path = (
-                "/Users/marlinberger/Desktop/local/Coding/mesasight/"
-                + "keras-retinanet/keras_retinanet/_own_experiments/"
-                + f"data/{DATA_NAME}/"
-                )
+
+            # on windows
+            if os.name == "nt":
+                base_path = (
+                    "C:\\Users\\MarlinBerger\\Desktop\\Code\\keras-retinanet\\"
+                    + "keras_retinanet\\_own_experiments\\data"
+                    + f"\\{DATA_NAME}\\"
+                    )
+            # on mac
+            else:
+                base_path = (
+                    "/Users/marlinberger/Desktop/local/Coding/mesasight/"
+                    + "keras-retinanet/keras_retinanet/_own_experiments/"
+                    + f"data/{DATA_NAME}/"
+                    )
             self.annotations = base_path + "annotations.csv"
             self.classes = base_path + "classes.csv"
 
