@@ -23,3 +23,4 @@ coverage.xml
 *.cover
 
 .DS_Store
+/keras_retinanet/utils/compute_overlap.c
